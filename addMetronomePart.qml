@@ -6,7 +6,14 @@ MuseScore {
    description: "Add metronome part"
    version: "0.1"
    requiresScore: true
-   
+   id: addMetronomePart
+
+   Component.onCompleted : {
+      if (mscoreMajorVersion >= 4) {
+          addMetronomePart.title = "Add Metronome Part";
+      }
+   }   
+
    onRun: {
       console.log("...")
             
@@ -27,6 +34,7 @@ MuseScore {
             c.addNote( i==1 ? 76 : 77, false )
       }while( c.prev() && c.nextMeasure() )
       
-      Qt.quit()
+      quit()
    }
 }
+
