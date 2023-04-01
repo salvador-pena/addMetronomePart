@@ -4,7 +4,7 @@ import MuseScore 3.0
 MuseScore {
    menuPath: "Plugins.Add Metronome Part"
    description: "Add metronome part"
-   version: "0.1"
+   version: "0.3"
    requiresScore: true
    id: addMetronomePart
 
@@ -15,8 +15,7 @@ MuseScore {
    }   
 
    onRun: {
-      console.log("...")
-            
+      curScore.startCmd()
       curScore.appendPart("wood-blocks")
       var idx = curScore.nstaves-1
       
@@ -33,8 +32,9 @@ MuseScore {
          for( var i=1; i <= c.measure.timesigActual.numerator; i++ )
             c.addNote( i==1 ? 76 : 77, false )
       }while( c.prev() && c.nextMeasure() )
+      curScore.endCmd()
       
-      quit()
+      ( typeof(quit)==='undefined' ? Qt.quit : quit )()
    }
 }
 

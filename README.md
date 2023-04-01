@@ -1,5 +1,5 @@
 # addMetronomePart
-This MuseScore plugin helps to create a part containing metronome-like notes based on time signature.
+This MuseScore plugin helps to create a part containing metronome-like notes based on time signatures.
 
 
 ## Installation
