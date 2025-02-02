@@ -7,6 +7,7 @@ MuseScore {
    version: "0.3"
    requiresScore: true
    id: addMetronomePart
+   //4.4 title: "Add Metronome Part"
 
    Component.onCompleted : {
       if (mscoreMajorVersion >= 4) {
