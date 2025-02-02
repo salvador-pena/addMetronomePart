@@ -4,7 +4,7 @@ import MuseScore 3.0
 MuseScore {
    menuPath: "Plugins.Add Metronome Part"
    description: "Add metronome part"
-   version: "0.3"
+   version: "0.4"
    requiresScore: true
    id: addMetronomePart
    //4.4 title: "Add Metronome Part"
@@ -13,7 +13,7 @@ MuseScore {
       if (mscoreMajorVersion >= 4) {
           addMetronomePart.title = "Add Metronome Part";
       }
-   }   
+   }
 
    onRun: {
       curScore.startCmd()
@@ -29,13 +29,14 @@ MuseScore {
       if( c.measure.timesigActual.str != c.measure.timesigNominal.str )
          c.nextMeasure()
       do{
-         c.setDuration( 1, c.measure.timesigActual.denominator )
-         for( var i=1; i <= c.measure.timesigActual.numerator; i++ )
+         var ts = c.measure.timesigActual
+         c.setDuration( 1, ts.denominator )
+         for( var i=1; i <= ts.numerator; i++ )
             c.addNote( i==1 ? 76 : 77, false )
       }while( c.prev() && c.nextMeasure() )
       curScore.endCmd()
       
-      ( typeof(quit)==='undefined' ? Qt.quit : quit )()
+      return
    }
 }
 
